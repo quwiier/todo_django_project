@@ -1,0 +1,14 @@
+{% extends 'todolist/layout.html' %}
+
+{% block content %}
+
+<h3>Редактирование задачи</h3>
+
+<form method="post" action="">
+    {% csrf_token %}
+    {{form.as_p}}
+    <a href="{% url 'tasks' %}">Отмена</a>
+    <input type="submit" value="Изменить">
+</form>
+
+{% endblock %}

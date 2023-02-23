@@ -1,32 +1,40 @@
 from django.shortcuts import render, redirect
 from django.views.decorators.http import require_http_methods
+from django.views.generic.list import ListView
+from django.views.generic.detail import DetailView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.urls import reverse_lazy
 
 from .models import Task
 
 
-# Create your views here.
-
-def index(request):
-    todos = Task.objects.all()
-    return render(request, 'todoapp/index.html', {'todo_list': todos, 'title': 'Главная страница'})
+class TaskList(ListView):
+    model = Task
+    context_object_name = 'tasks'
 
 
-@require_http_methods(['POST'])
-def add(request):
-    title = request.POST['title']
-    todo = Task(title=title)
-    todo.save()
-    return redirect('index')
+class TaskDetail(DetailView):
+    model = Task
+    context_object_name = 'task'
+    template_name = 'todolist/task.html'
 
 
-def update(request, todo_id):
-    todo = Task.objects.get(id=todo_id)
-    todo.is_complete = not todo.is_complete
-    todo.save()
-    return redirect('index')
+class TaskCreate(CreateView):
+    model = Task
+    fields = '__all__'
+    success_url = reverse_lazy('tasks')
+    template_name = 'todolist/task_create_form.html'
 
 
-def delete(request, todo_id):
-    todo = Task.objects.get(id=todo_id)
-    todo.delete()
-    return redirect('index')
+class TaskUpdate(UpdateView):
+    model = Task
+    fields = '__all__'
+    success_url = reverse_lazy('tasks')
+    template_name = 'todolist/task_update_form.html'
+
+
+class TaskDelete(DeleteView):
+    model = Task
+    context_object_name = 'task'
+    success_url = reverse_lazy('tasks')
+    template_name = 'todolist/task_delete_form.html'

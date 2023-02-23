@@ -1,0 +1,28 @@
+{% extends 'todolist/layout.html' %}
+
+{% block content %}
+
+<div style="margin-top: 50px; margin-bottom: 30px">
+    <h2>Мой менеджер задач</h2>
+    <a href="{% url 'task_create' %}">Создать задачу</a>
+</div>
+
+
+<table>
+    <tr>
+        <th>Задачи</th>
+    </tr>
+    {% for task in tasks %}
+    <tr>
+        <td>{{ task.title }}</td>
+        <td><a href="{% url 'task' task.id %}">Подробнее</a></td>
+        <td><a href="{% url 'task_update' task.id %}">Редактировать</a></td>
+        <td><a href="{% url 'task_delete' task.id %}">Удалить</a></td>
+    </tr>
+    {% empty %}
+    <h3>Пока нет задач</h3>
+    {% endfor %}
+</table>
+
+
+{% endblock %}
