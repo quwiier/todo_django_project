@@ -1,7 +1,11 @@
-from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.views.decorators.http import require_http_methods
+
+from .models import ToDo
+
 
 # Create your views here.
 
 def index(request):
-    return HttpResponse('Test')
+    todos = ToDo.objects.all()
+    return render(request, 'todoapp/index.html', {'todo_list': todos, 'title': 'Главная страница'})
