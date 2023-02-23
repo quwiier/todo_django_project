@@ -1,7 +1,13 @@
 {% extends 'todolist/layout.html' %}
 
 {% block content %}
-
+{% if request.user.is_authenticated %}
+    <p>{{request.user}}</p>
+    <a href="{% url 'logout' %}">Выйти</a>
+{% else %}
+    <a href="{% url 'login' %}">Войти</a>
+{% endif %}
+<hr>
 <div style="margin-top: 50px; margin-bottom: 30px">
     <h2>Мой менеджер задач</h2>
     <a href="{% url 'task_create' %}">Создать задачу</a>
