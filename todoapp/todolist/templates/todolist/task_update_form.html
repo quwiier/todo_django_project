@@ -2,13 +2,17 @@
 
 {% block content %}
 
-<h3>Редактирование задачи</h3>
+<div class="header-bar">
+    <h2>Редактирование задачи</h2>
+</div>
 
-<form method="post" action="">
-    {% csrf_token %}
-    {{form.as_p}}
-    <a href="{% url 'tasks' %}">Отмена</a>
-    <input type="submit" value="Изменить">
-</form>
+<div class="card-body">
+    <form method="post" action="">
+        {% csrf_token %}
+        {{form.as_p}}
+        <a href="{% url 'tasks' %}">Отмена</a>
+        <input class="button" type="submit" value="Изменить">
+    </form>
+</div>
 
 {% endblock %}

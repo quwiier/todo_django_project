@@ -2,14 +2,19 @@
 
 {% block content %}
 
-<h3>Удаление задачи</h3>
+<div class="header-bar">
+    <h2>Удаление задачи</h2>
+</div>
 
-<form method="post" action="">
-    {% csrf_token %}
-    {{form.as_p}}
-    <p>Действительно ли вы хотите удалить эту задачу? "{{task}}"</p>
-    <a href="{% url 'tasks' %}">Отмена</a>
-    <input type="submit" value="Удалить">
-</form>
+<div class="card-body">
+    <form method="post" action="">
+        {% csrf_token %}
+        {{form.as_p}}
+        <p>Действительно ли вы хотите удалить эту задачу? "{{task}}"</p>
+        <a href="{% url 'tasks' %}"> Отмена</a>
+        <input class="button" type="submit" value="Удалить">
+    </form>
+</div>
+
 
 {% endblock %}

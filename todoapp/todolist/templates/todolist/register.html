@@ -2,13 +2,16 @@
 
 {% block content %}
 
-<h1>Register</h1>
-<form method="post">
-    {% csrf_token %}
-    {{form.as_p}}
-    <input type="submit" value="Зарегистрироваться">
-</form>
+<div class="header-bar">
+    <h1>Register</h1>
+</div>
+<div class="card-body">
+    <form method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input style="margin-top: 10px ;" class="button" type="submit" value="Зарегистрироваться">
+    </form>
 
-<p>Уже есть аккаунт? <a href="{% url 'login' %}">Войти</a></p>
-
-{% endblock %}
+    <p>Уже есть аккаунт? <a href="{% url 'login' %}">Войти</a></p>
+</div>
+{% endblock content %}
