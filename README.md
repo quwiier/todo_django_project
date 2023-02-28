@@ -1,4 +1,4 @@
-## This is a pet-project of Django ToDo-list.
+## This is a Django ToDo-list project.
 
 ###### TODO:
 > 1. Add complete/incomplete button on circle
